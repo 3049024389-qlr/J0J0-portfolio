@@ -1,0 +1,20 @@
+---
+layout: base.html
+title: Projects
+---
+
+<header class="home-header">
+  <p class="home-greeting" id="greeting"></p>
+  <p class="home-subtext">Click a card to explore</p>
+</header>
+
+<main class="project-grid">
+  {%- for project in collections.projects -%}
+  <a href="{{ project.url }}" class="project-card"
+     data-n="0{{ forloop.index }}"
+     data-t="{{ project.data.title }}"
+     data-s="{{ project.data.subtitle }}">
+    <div class="card-bg" {% if project.data.cover %}style="background-image: url('{{ project.data.cover }}')"{% endif %}></div>
+  </a>
+  {%- endfor -%}
+</main>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ title }} — J0J0 Portfolio</title>
+  <link rel="stylesheet" href="/css/style.css">
+  {% if projectPage %}
+  <link rel="stylesheet" href="/css/project.css">
+  {% endif %}
+</head>
+<body>
+
+  <nav class="navbar">
+    <a href="/" class="nav-logo">J0J0</a>
+    <div class="nav-links">
+      <a href="/">PROJECTS</a>
+      <a href="/about/">ABOUT</a>
+    </div>
+  </nav>
+
+  {{ content }}
+
+  <script src="/js/main.js"></script>
+</body>
+</html>
