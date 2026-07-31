@@ -143,10 +143,11 @@ a { text-decoration: none; color: inherit; }
   background-color: #2a2a2a;
   background-size: cover;
   background-position: center;
-  transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+  filter: saturate(0.7);
+  transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1), filter 0.4s ease;
 }
 
 /* hover */
-.project-card:hover .card-bg { transform: scale(1.04); }
+.project-card:hover .card-bg { transform: scale(1.04); filter: saturate(1); }
 .project-card:hover::after { opacity: 1; }
 .project-card:hover .card-label { opacity: 1; transform: translateY(0); }

@@ -168,4 +168,174 @@ projectPage: true
 
 <footer class="project-footer">
   <a href="/" class="footer-back">← 返回项目列表</a>
+</footer>---
+layout: base.html
+projectPage: true
+---
+
+<nav class="sidebar" id="sidebar">
+  <ul class="sidebar-list">
+    <li><a href="#intro" class="sidebar-link active">简介</a></li>
+    <li><a href="#gallery" class="sidebar-link">图览</a></li>
+    {% if board %}
+    <li><a href="#board" class="sidebar-link">展板图纸</a></li>
+    {% else %}
+    {% for block in blocks %}{% if block.type == "board_grid" %}
+    <li><a href="#board" class="sidebar-link">展板图纸</a></li>
+    {% endif %}{% endfor %}
+    {% endif %}
+  </ul>
+</nav>
+
+<section class="project-hero" id="hero">
+  <div class="hero-slider">
+    {% if cover %}
+    <div class="hero-slide active" style="background-image: url('{{ cover }}')"></div>
+    {% endif %}
+    {% for block in blocks %}
+      {% if block.type == "render_group" %}
+        {% for item in block.images %}
+        <div class="hero-slide" style="background-image: url('{{ item.src }}')"></div>
+        {% endfor %}
+      {% endif %}
+    {% endfor %}
+  </div>
+  <div class="hero-overlay"></div>
+  <div class="hero-info">
+    <h1 class="hero-title">{{ title }}</h1>
+    <div class="hero-subtitle">{{ subtitle }}</div>
+  </div>
+  <button class="hero-prev">&#8592;</button>
+  <button class="hero-next">&#8594;</button>
+  <button class="hero-fullscreen" title="全屏查看">&#x26F6;</button>
+  <div class="hero-dots"></div>
+</section>
+
+<section class="project-body" id="intro">
+  <div class="project-description">
+    {% if description %}
+    {{ description | raw }}
+    {% else %}
+    <p class="placeholder-text">（简介文字待填写）</p>
+    {% endif %}
+  </div>
+  <div class="project-meta-col">
+    <div class="meta-item">
+      <span class="meta-label">设计时间</span>
+      <span class="meta-value">{{ period }}</span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">项目地点</span>
+      <span class="meta-value">{{ location }}</span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">建筑面积</span>
+      <span class="meta-value">{{ area }}</span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">指导老师</span>
+      <span class="meta-value">{{ instructor }}</span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">团队角色</span>
+      <span class="meta-value">{{ role }}</span>
+    </div>
+  </div>
+</section>
+
+<section class="project-gallery-grid" id="gallery" {% if galleryWidth %}style="width: {{ galleryWidth }}"{% endif %}>
+  {% for block in blocks %}
+
+    {% if block.type == "drawing_group" or block.type == "sketch_group" %}
+      {% for item in block.images %}
+        {% if item.span == "2" %}
+        <figure class="gallery-item gallery-item-span2" data-src="{{ item.src }}">
+          <img src="{{ item.src }}" alt="{{ item.caption }}" loading="lazy">
+          <figcaption>{{ item.caption }}</figcaption>
+        </figure>
+        <div class="gallery-spacer"></div>
+        {% elsif item.row %}
+        <figure class="gallery-item gallery-item-row" data-src="{{ item.src }}">
+          <img src="{{ item.src }}" alt="{{ item.caption }}" loading="lazy">
+          <figcaption>{{ item.caption }}</figcaption>
+        </figure>
+        {% elsif item.size == "quarter" %}
+        <figure class="gallery-item gallery-item-quarter" data-src="{{ item.src }}">
+          <img src="{{ item.src }}" alt="{{ item.caption }}" loading="lazy">
+          <figcaption>{{ item.caption }}</figcaption>
+        </figure>
+        {% else %}
+        <figure class="gallery-item" data-src="{{ item.src }}">
+          <img src="{{ item.src }}" alt="{{ item.caption }}" loading="lazy">
+          <figcaption>{{ item.caption }}</figcaption>
+        </figure>
+        {% endif %}
+      {% endfor %}
+    {% endif %}
+
+    {% if block.type == "wide_image" %}
+    <figure class="gallery-item gallery-item-wide" data-src="{{ block.src }}">
+      <img src="{{ block.src }}" alt="{{ block.caption }}" loading="lazy">
+      <figcaption>{{ block.caption }}</figcaption>
+    </figure>
+    {% endif %}
+
+    {% if block.type == "board_grid" %}
+    <div class="gallery-item-wide board-grid-block" id="board">
+      <div class="board-label">展板图纸</div>
+      <div class="board-grid-track">
+        {% for item in block.images %}
+        <figure class="board-grid-item" data-src="{{ item.src }}">
+          <img src="{{ item.src }}" alt="{{ item.caption }}" loading="lazy">
+          <figcaption>{{ item.caption }}</figcaption>
+        </figure>
+        {% endfor %}
+      </div>
+    </div>
+    {% endif %}
+
+    {% if block.type == "sketch_slider" %}
+    <div class="gallery-item-wide sketch-slider-container">
+      <div class="sketch-slider-track">
+        {% for item in block.images %}
+        <figure class="sketch-slide-item" data-src="{{ item.src }}">
+          <img src="{{ item.src }}" alt="{{ item.caption }}" loading="lazy">
+          <div class="sketch-caption-overlay">
+            <span>{{ item.caption }}</span>
+          </div>
+        </figure>
+        {% endfor %}
+      </div>
+    </div>
+    {% endif %}
+
+  {% endfor %}
+</section>
+
+{% if board %}
+<section class="project-board" id="board">
+  <div class="board-label">展板图纸</div>
+  {% if boardWide %}
+  <figure class="board-thumb board-thumb-wide" data-src="{{ board }}">
+    <img src="{{ board }}" alt="展板图纸" loading="lazy">
+    <figcaption>点击查看完整展板</figcaption>
+  </figure>
+  {% else %}
+  <figure class="board-thumb" data-src="{{ board }}">
+    <img src="{{ board }}" alt="展板图纸" loading="lazy">
+    <figcaption>点击查看完整展板</figcaption>
+  </figure>
+  {% endif %}
+</section>
+{% endif %}
+
+<div class="zoom-overlay" id="zoomOverlay">
+  <img src="" alt="" id="zoomImg">
+  <div class="zoom-close" id="zoomClose">✕</div>
+  <div class="zoom-prev" id="zoomPrev">&#8592;</div>
+  <div class="zoom-next" id="zoomNext">&#8594;</div>
+</div>
+
+<footer class="project-footer">
+  <a href="/" class="footer-back">← 返回项目列表</a>
 </footer>

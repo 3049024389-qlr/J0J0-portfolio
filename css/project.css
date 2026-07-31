@@ -154,6 +154,9 @@
   color: #333;
   padding-right: 32px;
 }
+.project-description p {
+  margin-bottom: 1em;
+}
 .placeholder-text { color: #bbb; font-style: italic; }
 .project-meta-col {
   grid-column: 3;
