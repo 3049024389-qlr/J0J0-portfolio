@@ -4,10 +4,10 @@
   if (!el) return;
   const h = new Date().getHours();
   let msg;
-  if (h >= 5 && h < 12) msg = 'Good morning.';
-  else if (h >= 12 && h < 18) msg = 'Good afternoon.';
-  else if (h >= 18 && h < 22) msg = 'Good evening.';
-  else msg = 'Time to rest.';
+  if (h >= 5 && h < 12) msg = '早上好！';
+  else if (h >= 12 && h < 14) msg = '中午好！';
+  else if (h >= 14 && h < 18) msg = '下午好！';
+  else msg = '晚上好！';
   el.textContent = msg;
 })();
 

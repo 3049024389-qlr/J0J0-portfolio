@@ -62,7 +62,7 @@ a { text-decoration: none; color: inherit; }
 }
 
 .home-greeting {
-  font-size: clamp(20px, 2.5vw, 32px);
+  font-size: clamp(20px, 2.5vw, 48px);
   font-weight: 400;
   letter-spacing: 1.5px;
   color: #999;
@@ -151,3 +151,70 @@ a { text-decoration: none; color: inherit; }
 .project-card:hover .card-bg { transform: scale(1.04); filter: saturate(1); }
 .project-card:hover::after { opacity: 1; }
 .project-card:hover .card-label { opacity: 1; transform: translateY(0); }
+/* about */
+.about-wrap {
+  margin-top: 52px;
+  min-height: calc(100vh - 52px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 48px;
+}
+
+.about-main {
+  max-width: 640px;
+  width: 100%;
+}
+
+.about-name {
+  font-size: clamp(28px, 4vw, 48px);
+  font-weight: 400;
+  letter-spacing: 2px;
+  color: #111;
+  margin-bottom: 8px;
+}
+
+.about-tagline {
+  font-size: 13px;
+  color: #999;
+  letter-spacing: 1px;
+  margin-bottom: 48px;
+}
+
+.about-block {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 0 32px;
+  margin-bottom: 32px;
+}
+
+.about-label {
+  font-size: 12px;
+  letter-spacing: 1.5px;
+  color: #aaa;
+  text-transform: uppercase;
+  padding-top: 2px;
+}
+
+.about-content p {
+  font-size: 13px;
+  color: #333;
+  line-height: 2;
+}
+
+.about-download {
+  display: inline-block;
+  margin-top: 48px;
+  padding: 12px 32px;
+  background: #111;
+  color: #fff;
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+
+.about-download:hover {
+  background: #444;
+}
