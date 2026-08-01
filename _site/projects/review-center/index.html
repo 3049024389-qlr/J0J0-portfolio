@@ -363,8 +363,41 @@
 </div>
 
 <footer class="project-footer">
-  <a href="/" class="footer-back">← 返回项目列表</a>
+  <div class="footer-nav">
+    <div class="footer-prev" id="footerPrev"></div>
+    <a href="/" class="footer-back">返回项目列表</a>
+    <div class="footer-next" id="footerNext"></div>
+  </div>
 </footer>
+
+<script>
+  var projects = [
+    
+    { url: "/projects/chongfu-survey/", title: "崇福寺弥陀殿测绘调研", order: 1 },
+    
+    { url: "/projects/qirang/", title: "栖攘", order: 2 },
+    
+    { url: "/projects/yunzhu/", title: "云驻·乡村文旅中心", order: 3 },
+    
+    { url: "/projects/back-to-hyrule/", title: "重返海拉鲁——数字建成环境·民俗博物馆", order: 4 },
+    
+    { url: "/projects/senegal-nursery/", title: "Kaira Looro 2025·幼儿园国际竞赛", order: 5 },
+    
+    { url: "/projects/review-center/", title: "CAUP共享学习中心", order: 6 },
+    
+    { url: "/projects/rongxian/", title: "荣县陶艺工作坊与系舟居", order: 7 }
+    
+  ];
+  var currentOrder = 6;
+  var prev = projects.find(function(p) { return p.order === currentOrder - 1; });
+  var next = projects.find(function(p) { return p.order === currentOrder + 1; });
+  if (prev) {
+    document.getElementById('footerPrev').innerHTML = '<a href="' + prev.url + '" class="footer-nav-link"><span class="footer-nav-label">← 上一个</span><span class="footer-nav-title">' + prev.title + '</span></a>';
+  }
+  if (next) {
+    document.getElementById('footerNext').innerHTML = '<a href="' + next.url + '" class="footer-nav-link"><span class="footer-nav-label">下一个 →</span><span class="footer-nav-title">' + next.title + '</span></a>';
+  }
+</script>
 
   <script src="/js/main.js"></script>
 </body>

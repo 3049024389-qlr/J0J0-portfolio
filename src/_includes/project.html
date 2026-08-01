@@ -184,8 +184,29 @@ projectPage: true
 </div>
 
 <footer class="project-footer">
-  <a href="/" class="footer-back">← 返回项目列表</a>
+  <div class="footer-nav">
+    <div class="footer-prev" id="footerPrev"></div>
+    <a href="/" class="footer-back">返回项目列表</a>
+    <div class="footer-next" id="footerNext"></div>
+  </div>
 </footer>
+
+<script>
+  var projects = [
+    {% for p in collections.projects %}
+    { url: "{{ p.url }}", title: "{{ p.data.title }}", order: {{ p.data.order }} }{% unless forloop.last %},{% endunless %}
+    {% endfor %}
+  ];
+  var currentOrder = {{ order }};
+  var prev = projects.find(function(p) { return p.order === currentOrder - 1; });
+  var next = projects.find(function(p) { return p.order === currentOrder + 1; });
+  if (prev) {
+    document.getElementById('footerPrev').innerHTML = '<a href="' + prev.url + '" class="footer-nav-link"><span class="footer-nav-label">← 上一个</span><span class="footer-nav-title">' + prev.title + '</span></a>';
+  }
+  if (next) {
+    document.getElementById('footerNext').innerHTML = '<a href="' + next.url + '" class="footer-nav-link"><span class="footer-nav-label">下一个 →</span><span class="footer-nav-title">' + next.title + '</span></a>';
+  }
+</script>
 
   <script src="/js/main.js"></script>
 </body>
