@@ -8,7 +8,7 @@ location: 上海
 area: 14200㎡
 instructor: 江浩
 role: 独立完成
-cover: /images/qirang/cover.jpg
+cover: /images/qirang/cover.png
 board: /images/qirang/展板图纸.png
 description: |
   <p>高密度住区往往缺乏公共缓冲——城市、居住、公共绿地之间直接相接，缺少能够同时承接三者的过渡性功能界面。方案以社区商业中心为媒介，在空间序列与立面语言上同步回应这一关系。</p>
